@@ -2,7 +2,7 @@ var pageData = [
   {
     "Page 1 title": [
       {
-        "Section 1 tile": "Section 1 content",
+        "Section 1 tile": "Section 1 content sec 2",
       },
       {
         "Section 2 tile": "Section 2 content",
@@ -161,15 +161,42 @@ $(document).ready(function () {
     }
     displayAllData(allSearchData);
   }
-
+  function getHighlightedData(searchStr, str) {
+    var searchStrLen = searchStr.length;
+    var updatedStr = "";
+    if (searchStrLen == 0) {
+      return [];
+    }
+    var startIndex = 0,
+      index,
+      indices = [];
+    while (
+      (index = str.toLowerCase().indexOf(searchStr.toLowerCase(), startIndex)) >
+      -1
+    ) {
+      indices.push(index);
+      updatedStr +=
+        str.slice(startIndex, index) +
+        "<mark>" +
+        str.slice(index, index + searchStrLen) +
+        "</mark>";
+      startIndex = index + searchStrLen;
+    }
+    updatedStr += str.slice(startIndex);
+    return updatedStr;
+  }
   function getContentList(zEvent) {
+    let search = element("search-input").value;
     allSearchData = ""; //clears data for each word typed
     console.log("here2");
     var sectionTitle = this.id;
     var pageTitle = this.getAttribute("pgid");
-    console.log(sectionTitle + " " + pageTitle);
+    console.log(sectionTitle + " " + pageTitle + " " + search);
     var i = this.getAttribute("idx");
-    var content = matches[pageTitle][i][sectionTitle];
+    var content = getHighlightedData(
+      search,
+      matches[pageTitle][i][sectionTitle]
+    );
     allSearchData += "<div class='contentid'><p>" + content + "</p></div>";
     displayAllData(allSearchData);
   }
