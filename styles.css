@@ -34,28 +34,6 @@
   outline: none;
 }
 
-#search-results {
-  position: absolute;
-  z-index: 10;
-  margin: 1px auto;
-  background: #1ca0b8;
-  width: 90%;
-  text-align: left;
-  border-radius: 4px;
-  border: 2px solid #1ca0b8;
-  display: none;
-}
-.search-item {
-  color: white;
-  cursor: pointer;
-}
-.search-item p {
-  margin: 0;
-  padding: 10px;
-}
-.search-item:hover {
-  background: #2cc7e2;
-}
 #search-data {
   margin-top: 10px;
   color: #1ca0b8;
@@ -65,6 +43,7 @@
   padding: 6px;
   font-size: 16px;
 }
+
 mark {
   background-color: yellow;
   color: black;
